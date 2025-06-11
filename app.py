@@ -17,7 +17,7 @@ model = tree.fit(x_train, y_train)
 st.title("Kalp Krizi Riski Tahmini")
 
 age = st.slider("Yaş", 20, 80, 50)
-sex = st.selectbox("Cinsiyet (0: Kadın, 1: Erkek)", [0, 1])
+sex_display = st.selectbox("Cinsiyet", ["Kadın", "Erkek"])
 cp = st.selectbox("Göğüs Ağrısı Tipi (0-3)", [0, 1, 2, 3])
 trestbps = st.slider("Dinlenme Kan Basıncı", 80, 200, 120)
 chol = st.slider("Kolesterol", 100, 400, 200)
@@ -29,6 +29,9 @@ oldpeak = st.slider("ST Depresyonu", 0.0, 6.0, 1.0)
 slope = st.selectbox("Eğim (0-2)", [0, 1, 2])
 ca = st.selectbox("Damar Sayısı (0-4)", [0, 1, 2, 3, 4])
 thal = st.selectbox("Thal (0-3)", [0, 1, 2, 3])
+
+
+sex = 0 if sex_display == "Kadın" else 1
 
 if st.button("Tahmin Et"):
     input_data = np.array([[age, sex, cp, trestbps, chol, fbs, restecg,
